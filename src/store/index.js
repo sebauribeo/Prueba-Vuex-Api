@@ -5,10 +5,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    personaje: [],    
+  },
+  getters: {
+    infoPersonaje(state){
+      return state.personaje;      
+    },
+
   },
   mutations: {
+
   },
   actions: {
+
   },
   modules: {
   }
