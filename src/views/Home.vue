@@ -13,14 +13,44 @@
             <span>s</span>
         </h1>
         <div class="row m-5" >
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 mt-4"  v-for="(personaje, index) in personaje.results" :key="index">
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 mt-4"  v-for="(personaje, index) in enviarPersonaje" :key="index">
                 <img :src="personaje.image" class="image card-img-top mx-auto d-block" alt="">
                 <div class="">
                     <h5 class="card-title text-center text-white m-4">{{personaje.name}}</h5>
                     <a href="#" class="btn btn-danger col-6 rounded-pill">Opinar</a>
-                    <a href="#" class="btn btn-success col-6 rounded-pill">Ver más</a>
+                    <button type="button" class="btn btn-success col-6 rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver más</button>
                 </div>
             </div>
+        </div>
+
+
+<!-- Modal -->
+        <div class=""  v-for="(personaje, index) in enviarPersonaje" :key="index">
+        <div>{{index+1}}</div>
+        <div class="modal fade  mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content text-white">
+              <div class="modal-header ">
+                <h5 class="modal-title" id="exampleModalLabel">{{personaje.name}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body m-3 row">
+                <img class="col-6" :src="personaje.image" alt="">  
+                <ul class="p-0 col-6">
+                    <li class="m-3">{{personaje.species}}</li>
+                    <li class="m-3">{{personaje.gender}}</li>
+                    <li class="m-3">{{personaje.status}}</li>
+                    <li class="m-3">{{personaje.origin.name}}</li>
+                </ul>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-success rounded-pill" @click="agregandoFavoritos(personaje)" :disabled="personaje.favorito">Agregar a Favoritos</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         </div>
 
     </div>
@@ -28,20 +58,17 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 
     export default {
         name: 'Home',
-        data() {
-            return {
-                personaje: {},
-            }
+        computed: {
+           ...mapGetters(['enviarPersonaje'])
         },
-        mounted() {
-            fetch('https://rickandmortyapi.com/api/character/')
-            .then((resp) => resp.json())
-            .then((results) => {
-                this.personaje = results;
-            })
+        methods: {
+            ...mapActions(['agregandoFavoritos'])
+
         }
 
 
@@ -70,8 +97,6 @@ body {
     box-shadow: 0 0 20px 0 yellow, 0 0 40px 0 red;
 
 }
-
-
 h1 {
     font-family: 'Lobster', cursive;
     margin-top: 20px;
@@ -114,7 +139,6 @@ h1 span:nth-child(8){
 h1 span:nth-child(9){
     animation-delay: 2s;
 }
-
 @keyframes animate{
     0%, 100% {
         color: #fff;
@@ -125,6 +149,41 @@ h1 span:nth-child(9){
         color: #7c7c7c;
         filter: blur(0%);
         text-shadow:  none;
+    }
+}
+
+
+.modal-content {
+    position: relative;
+    margin: 50px;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(0deg, #000000, #262626);
+}
+.modal-content:before, .modal-content:after{
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background: linear-gradient(60deg, #fb0094, #0000ff, #00ff00, #fff000, #ff0000,#fb0094, #0000ff, #00ff00, #fff000, #ff0000);
+    background-size: 200%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: animate1 20s linear infinite;
+}
+.modal-content:after{
+filter: blur(20px);
+}
+@keyframes animate1{
+    0%{
+        background-position: 0 0;
+    }
+    50%{
+        background-position: 700% 0;
+    }
+    100%{
+        background-position: 0 0;
     }
 }
 </style>

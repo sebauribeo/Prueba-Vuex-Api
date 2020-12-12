@@ -1,26 +1,27 @@
 <template>
   <div>
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <router-link to="/"><img class="logo navbar-brand ml-5" src="./assets/1200px-Rick_and_Morty.svg.png" alt=""></router-link>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <router-link to="/"><img class="logo navbar-brand ms-5" src="./assets/1200px-Rick_and_Morty.svg.png" alt=""></router-link>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <router-link class="nav-link p-3" to="/opiniones">Opiniones</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link p-3" to="/favoritos">Favoritos</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link p-3" to="/administracion">Administración</router-link>
-                </li>
-            </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link class="nav-link p-3" to="/opiniones">Opiniones</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link p-3" to="/favoritos">Favoritos</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link p-3" to="/administracion">Administración</router-link>
+            </li>
+          </ul>
         </div>
-        </nav>
-    </div>
+      </div>
+    </nav>
+
     <router-view/>
     <footer class="footer navbar navbar-expand-lg bg-dark text-white">
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
@@ -36,6 +37,16 @@
     </footer>
   </div>
 </template>
+
+<script>
+
+export default {
+  name: 'App',
+  created() {
+    this.$store.dispatch('llamadoAPI');
+  },
+}
+</script>
 
 <style>
 body {
