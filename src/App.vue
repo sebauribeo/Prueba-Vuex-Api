@@ -21,8 +21,10 @@
         </div>
       </div>
     </nav>
+    <transition name="la-transicion" mode="out-in">
+      <router-view></router-view>
+    </transition>
 
-    <router-view/>
     <footer class="footer navbar navbar-expand-lg bg-dark text-white">
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
         <p>Pagina web creada por: Sebastian Uribe</p>
@@ -35,6 +37,9 @@
         </ul>
       </div>
     </footer>
+
+
+
   </div>
 </template>
 
@@ -54,10 +59,22 @@ body {
   padding: 0;
   border: 0;
   background: url('../src/assets/fondo.gif');
-  
+}
+.la-transicion-enter-active {
+  transition: all .1s ease;
+}
+.la-transicion-enter, .slide-fade-leave-to {
+  transform: rotateY(90deg);
+  opacity: 0;
 }
 .logo {
   width: 150px;
+    transition: 1s;
+
+}
+.logo:hover {
+  transform: scale(1.1);
+  transition: 1s;
 }
 .footer {
   max-width: auto;
@@ -89,4 +106,5 @@ body {
   transform: scale(1.3);
   transition: 1s;
 }
+
 </style>

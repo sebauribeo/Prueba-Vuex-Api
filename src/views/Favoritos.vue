@@ -15,7 +15,7 @@
             <div class="row" v-if="enviarFavoritos.length > 0">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 my-3" v-for="(favorito, index) in enviarFavoritos" :key="index">
                     <div class="">
-                        <img :src="favorito.image" class="image card-img-top rounded-circle mx-auto d-block" alt="...">
+                        <img :src="favorito.image" class="image card-img-top rounded-circle mx-auto d-block" :alt="favorito.id++">
                         <div class="card-body">
                            <h5 class="card-title m-4 text-center text-white" >{{favorito.name}}</h5>
                         <a href="#" class="btn btn-danger col-12 rounded-pill m-1" @click="eliminandoFav(index)">Eliminar</a>

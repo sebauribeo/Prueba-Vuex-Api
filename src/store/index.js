@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     personaje: [], 
-    favorito: []   
+    favorito: [],
+    opinion: [],
   },
   getters: {
     enviarPersonaje(state){
@@ -14,8 +15,13 @@ export default new Vuex.Store({
     },
     enviarFavoritos(state){
       return state.favorito;
+    },
+    enviarOpinion(state){
+      return state.opinion;
+    },
+    eviarOpAdm(state){
+      return state.opinion;
     }
-
 
   },
   mutations: {
@@ -26,13 +32,26 @@ export default new Vuex.Store({
       state.personaje = datos;
     },
     mutandoFavoritos(state,valor){
-      let resultado = state.personaje.find(result => result.results == valor.results);
+      let resultado = state.personaje.find(result => result.id == valor.id);
       resultado.favorito = true;
       state.favorito.push(resultado)
     },
     borrarFav(state,index){
       state.favorito.splice(index,1);
     },
+    mutandoOpinion(state,opinion){
+      state.opinion.push(opinion);
+    },
+    borrarOpinion(state,index){
+      state.opinion.splice(index,1)
+    },
+    mutandoOpiAdm(state, item){
+    let opinion = state.opinion.find(result => result.id == opinion.id)
+      opinion.nombre = item.nombre;
+      opinion.comentario = item.comentario;
+      opinion.name = item.name;
+      opinion.id = item.id;
+    }
 
   },
   actions: {
@@ -46,12 +65,19 @@ export default new Vuex.Store({
       }
     },
     agregandoFavoritos({commit},valor){
-      commit('mutandoFavoritos',valor)
+      commit('mutandoFavoritos',valor);
     },
     eliminandoFav({commit},index){
       commit('borrarFav',index);
     },
+    agregandoOpinion({commit},nueva){
+      commit('mutandoOpinion',nueva);
+    },
+    eliminandoOpinion({commit},index){
+      commit('borrarOpinion', index);
+    },
+    guardarEditar({commit},item){
+      commit('mutandoOpiAdm',item);
+    }
   },
-  modules: {
-  }
 })

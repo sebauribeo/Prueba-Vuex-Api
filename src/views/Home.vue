@@ -17,8 +17,8 @@
                 <img :src="personaje.image" class="image card-img-top mx-auto d-block" alt="">
                 <div class="">
                     <h5 class="card-title text-center text-white m-4">{{personaje.name}}</h5>
-                    <a href="#" class="btn btn-danger col-6 rounded-pill">Opinar</a>
-                    <button type="button" class="btn btn-success col-6 rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver más</button>
+                    <button type="button" class="btn btn-danger col-6 rounded-pill" data-bs-toggle="modal" :data-bs-target="'#exampleModal2'+personaje.id" data-bs-whatever="@mdo">Opinar</button>
+                    <button type="button" class="btn btn-success col-6 rounded-pill" data-bs-toggle="modal" :data-bs-target="'#exampleModal'+personaje.id">Ver más</button>
                 </div>
             </div>
         </div>
@@ -26,15 +26,14 @@
 
 <!-- Modal -->
         <div class=""  v-for="(personaje, index) in enviarPersonaje" :key="index">
-        <div>{{index+1}}</div>
-        <div class="modal fade  mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade  mt-5" :id="'exampleModal'+personaje.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content text-white">
               <div class="modal-header ">
                 <h5 class="modal-title" id="exampleModalLabel">{{personaje.name}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body m-3 row">
+              <div class="modal-body m-1 row">
                 <img class="col-6" :src="personaje.image" alt="">  
                 <ul class="p-0 col-6">
                     <li class="m-3">{{personaje.species}}</li>
@@ -44,15 +43,41 @@
                 </ul>
               </div>
               <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
-                <button class="btn btn-success rounded-pill" @click="agregandoFavoritos(personaje)" :disabled="personaje.favorito">Agregar a Favoritos</button>
+                <button type="button" class="btn btn-secondary rounded-pill " data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal" @click="agregandoFavoritos(personaje)" :disabled="personaje.favorito">Agregar a Favoritos</button>
               </div>
             </div>
           </div>
         </div>
-
         </div>
-
+        <div v-for="(personaje, index) in enviarPersonaje" :key="index">
+          <div class="modal fade mt-5" :id="'exampleModal2'+personaje.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content text-white">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">{{personaje.name}}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                   <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Tu nombre:</label>
+                      <input v-model="nombre" type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="m-1">
+                      <label for="message-text" class="col-form-label">Opinion:</label>
+                      <textarea v-model="comentario" class="form-control" id="message-text"></textarea>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="agregandoOpinion(personaje)" >Enviar Opinion</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 
 </template>
@@ -63,13 +88,14 @@ import { mapGetters, mapActions } from "vuex";
 
     export default {
         name: 'Home',
+
         computed: {
            ...mapGetters(['enviarPersonaje'])
         },
         methods: {
-            ...mapActions(['agregandoFavoritos'])
-
-        }
+            ...mapActions(['agregandoFavoritos', 'agregandoOpinion'])
+        },
+        
 
 
     }
