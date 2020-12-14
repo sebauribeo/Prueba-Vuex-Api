@@ -16,7 +16,7 @@
             <span>ó</span>
             <span>n</span>
         </h1>
-        <div v-if="enviarOpinion.length > 0">
+        <div v-if="enviarOpAdm.length > 0">
         <table class="table container bg-dark text-warning">
           <thead>
             <tr class="text-center">
@@ -29,52 +29,51 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="text-center" v-for="(item, index) in enviarOpinion" :key="index">
+            <tr class="text-center" v-for="(item, index) in enviarOpAdm" :key="index">
               <th>{{item.id}}</th>
               <td>{{item.name}}</td>
               <td>{{item.comentario}}</td>
               <td>{{item.nombre}}</td>
               <td><a href="#" class="btn btn-danger col-12 rounded-pill" @click="eliminandoOpinion(index)">Eliminar</a></td>
-              <td><button type="button" class="btn btn-success col-12 rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Editar</button></td>
+              <td><button type="button" class="btn btn-success col-12 rounded-pill" data-bs-toggle="modal" :data-bs-target="'#exampleModal'+item.id" data-bs-whatever="@mdo">Editar</button></td>
             </tr>
           </tbody>  
         </table>
         </div>
         <div v-else>
-            <div class="alert mx-auto m-5" role="alert" >
-                <div class="titulo text-center ">
-                <h2 class="pt-5 text-center">No hay datos para Administrar</h2>             
-                </div>
+          <div class="alert mx-auto m-5" role="alert" >
+            <div class="titulo text-center ">
+              <h2 class="pt-5 text-center">No hay datos para Administrar</h2>             
             </div>
+         </div>
         </div>
-        
-<div class="modal fade mt-5" id="exampleModal" v-for="(item, index) in eviarOpAdm" :key="index" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editor</h5>
-
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">nombre:</label>
-            <input v-model="name" type="text" class="form-control" id="recipient-name">
+        <div class="modal fade mt-5" :id="'exampleModal'+item.id" v-for="(item, index) in enviarOpAdm" :key="index" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content text-white">
+              <div class="modal-header">
+                <label for="recipient-name" class="col-form-label">personaje:</label>
+                <input v-model="name" type="text" class="form-control mx-4" id="recipient-name">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">nombre:</label>
+                    <input v-model="nombre" type="text" class="form-control" id="recipient-name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Opinion:</label>
+                    <textarea v-model="comentario" class="form-control" id="message-text"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click.prevent="guardarNuevo(index)" >Guardar</button>
+              </div>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Opinion:</label>
-            <textarea v-model="comentario" class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" ata-bs-dismiss="modal" @click="guardarEditar(item)" >Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
+        </div>
     </div>
 </template>
 
@@ -83,12 +82,40 @@ import { mapGetters,mapActions } from "vuex";
 
     export default {
         name: 'Administracion',
-
+        data() {
+            return {
+                nombre: '',
+                comentario: '',
+                name: '',
+                id: {
+                    type: String,
+                    required: true
+        }
+            }
+        },
         computed: {
-           ...mapGetters(['enviarOpinion', 'eviarOpAdm'])
+           ...mapGetters(['enviarOpAdm'])
         },
         methods: {
-            ...mapActions(['agregandoOpinion', 'eliminandoOpinion', 'guardarEditar'])
+            editando(item){
+                this.push({name: 'editar', params: {id2: item.id}})
+            },
+            guardarNuevo(){
+             if(this.nombre && this.comentario && this.name){
+                let editar = {
+                    nombre: this.nombre,
+                    comentario: this.comentario,
+                    name: this.name,
+                };
+                this.$store.dispatch('guardarPersonaje',editar)
+                this.nombre = '';
+                this.comentario = '';
+                this.name = '';
+                this.id = '';
+             }
+            },
+
+            ...mapActions(['agregandoOpinion', 'eliminandoOpinion', 'agregarEditar'])
         }
     }
 </script>
@@ -217,6 +244,39 @@ h1 span:nth-child(14){
 }
 .table {
     margin-bottom: 300px;
+}
+.modal-content {
+    position: relative;
+    margin: 50px;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(0deg, #000000, #262626);
+}
+.modal-content:before, .modal-content:after{
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background: linear-gradient(60deg, #fb0094, #0000ff, #00ff00, #fff000, #ff0000,#fb0094, #0000ff, #00ff00, #fff000, #ff0000);
+    background-size: 200%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: animate1 20s linear infinite;
+}
+.modal-content:after{
+filter: blur(20px);
+}
+@keyframes animate1{
+    0%{
+        background-position: 0 0;
+    }
+    50%{
+        background-position: 700% 0;
+    }
+    100%{
+        background-position: 0 0;
+    }
 }
 
 </style>

@@ -72,7 +72,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="agregandoOpinion(personaje)" >Enviar Opinion</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="guardarOpinion(personaje)" >Enviar Opinion</button>
                 </div>
               </div>
             </div>
@@ -84,20 +84,35 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-
-
     export default {
         name: 'Home',
-
+        data() {
+            return {
+                nombre: '',
+                comentario: '',
+            }
+        },
         computed: {
            ...mapGetters(['enviarPersonaje'])
         },
         methods: {
-            ...mapActions(['agregandoFavoritos', 'agregandoOpinion'])
+            guardarOpinion(personaje){
+                
+                if (this.nombre && this.comentario){
+                    let opinion = {
+                        nombre: this.nombre,
+                        comentario: this.comentario,
+                        id: personaje.id,
+                        name: personaje.name,
+                    }
+                this.$store.dispatch('agregarOpinion',opinion),
+                this.nombre = '';
+                this.comentario = '';
+                }
+            
+            },
+            ...mapActions(['agregandoFavoritos', 'agregarOpinion'])
         },
-        
-
-
     }
 </script>
 

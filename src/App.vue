@@ -104,7 +104,9 @@ body {
 }
 .footer div ul li i:hover {
   transform: scale(1.3);
-  transition: 1s;
+  transition: 2s;
 }
-
+#nav a.router-link-exact-active {
+  color: #fffb07;
+}
 </style>

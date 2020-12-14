@@ -28,7 +28,7 @@ const routes = [
   {
     path: '*',
     component: () => import(/* webpackChunkName: "NotFound" */ '../views/NotFound.vue')
-  }
+}
 ]
 
 const router = new VueRouter({

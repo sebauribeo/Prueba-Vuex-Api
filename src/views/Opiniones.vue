@@ -12,17 +12,18 @@
             <span>s</span>
         </h1>
         <div class="container mt-5" v-if="enviarOpinion.length > 0">
-        <div class="accordion bg-light" id="accordionExample" v-for="(opinion, index) in enviarOpinion" :key="index">
+        <div class="accordion bg-light" :id="'accordionExample'+opinion.item" v-for="(opinion, index) in enviarOpinion" :key="index">
             <div class="accordion-item">
               <h2 class="accordion-header" id="heading">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="'#collapseOne'+opinion.id" aria-expanded="true" aria-controls="collapseOne">
                   <p class="m-3"><strong>Opinion sobre: </strong>{{opinion.name}}</p>
                   <br>
-                  <p class="m-3"><strong>Realizado por: </strong>{{opinion.personaje}}</p>
+                  <p class="m-3"><strong>Realizado por: </strong>{{opinion.nombre}}</p>
                 </button>
               </h2>
-              <div :id="'collapseOne'+opinion.id" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#recipient-name">
+              <div :id="'collapseOne'+opinion.id" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#recipient-name">
                 <div class="accordion-body">
+                    <h2>Opinion de personaje:</h2>
                   <p><strong>{{opinion.comentario}}</strong></p>
                 </div>
               </div>
@@ -50,9 +51,9 @@ import { mapGetters,mapActions } from "vuex";
             ...mapGetters(['enviarOpinion'])
         },
         methods: {
-
             ...mapActions(['agregandoOpinion'])
         }
+
 
     }
 </script>
@@ -182,5 +183,6 @@ h1 span:nth-child(9){
 }
 .container {
     margin-bottom: 300px;
+    
 }
 </style>

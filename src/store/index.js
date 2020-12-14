@@ -19,7 +19,7 @@ export default new Vuex.Store({
     enviarOpinion(state){
       return state.opinion;
     },
-    eviarOpAdm(state){
+    enviarOpAdm(state){
       return state.opinion;
     }
 
@@ -33,24 +33,36 @@ export default new Vuex.Store({
     },
     mutandoFavoritos(state,valor){
       let resultado = state.personaje.find(result => result.id == valor.id);
-      resultado.favorito = true;
       state.favorito.push(resultado)
     },
     borrarFav(state,index){
       state.favorito.splice(index,1);
     },
-    mutandoOpinion(state,opinion){
-      state.opinion.push(opinion);
+    mutandoOpinion(state,nombre){
+      state.opinion.push(nombre);
     },
     borrarOpinion(state,index){
       state.opinion.splice(index,1)
     },
     mutandoOpiAdm(state, item){
-    let opinion = state.opinion.find(result => result.id == opinion.id)
-      opinion.nombre = item.nombre;
-      opinion.comentario = item.comentario;
-      opinion.name = item.name;
-      opinion.id = item.id;
+      let resultado = state.opinion.find(result => result.id == item.id);
+      resultado.opinion = true;
+      state.opinion.push(item);
+    },
+    mutandoGuardar(state,item){
+      let valor = [];
+      for (let index = 0; index < 1; index++){
+        valor.push(item)
+      }
+      let id = valor.push('');
+      item.id = id;
+      let name = valor.join('');
+      item.name = name;
+      let comentario = valor.join('');
+      item.comentario = comentario;
+      let nombre = valor.join('');
+      item.nombre = nombre;
+      state.opinion.push(item);
     }
 
   },
@@ -70,14 +82,17 @@ export default new Vuex.Store({
     eliminandoFav({commit},index){
       commit('borrarFav',index);
     },
-    agregandoOpinion({commit},nueva){
-      commit('mutandoOpinion',nueva);
+    agregarOpinion({commit},opinion){
+      commit('mutandoOpinion',opinion);
     },
     eliminandoOpinion({commit},index){
       commit('borrarOpinion', index);
     },
-    guardarEditar({commit},item){
+    agregarEditar({commit},item){
       commit('mutandoOpiAdm',item);
+    },
+    guardarPersonaje({commit},item){
+      commit('mutandoGuardar',item)
     }
   },
 })
