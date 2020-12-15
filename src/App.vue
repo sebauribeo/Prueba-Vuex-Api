@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container-fluid">
         <router-link to="/"><img class="logo navbar-brand ms-5" src="./assets/1200px-Rick_and_Morty.svg.png" alt=""></router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,13 +27,13 @@
 
     <footer class="footer navbar navbar-expand-lg bg-dark text-white">
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-        <p>Pagina web creada por: Sebastian Uribe</p>
+        <p> Pagina web creada por:<strong> Sebastian Uribe</strong></p>
       </div>
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
         <ul>
-          <li><a href="https://twitter.com/?lang=es" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a></li>
-          <li><a href="https://web.facebook.com" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a></li>
-          <li><a href="https://github.com" target="_blank"><i class="fab fa-github-square fa-2x"></i></a></li>
+          <li><a href="https://twitter.com/?lang=es" target="_blank"><font-awesome-icon class="fa-2x" :icon="['fab', 'twitter-square']"></font-awesome-icon></a></li>
+          <li><a href="https://web.facebook.com" target="_blank"><font-awesome-icon class="fa-2x" :icon="['fab', 'facebook-square']"></font-awesome-icon></a></li>
+          <li><a href="https://github.com" target="_blank"><font-awesome-icon class="fa-2x" :icon="['fab', 'github-square']"></font-awesome-icon></a></li>
         </ul>
       </div>
     </footer>
@@ -61,11 +61,10 @@ body {
   background: url('../src/assets/fondo.gif');
 }
 .la-transicion-enter-active {
-  transition: all .1s ease;
+  transition:  all 1s ease;
 }
 .la-transicion-enter, .slide-fade-leave-to {
-  transform: rotateY(90deg);
-  opacity: 0;
+  transform: rotateY(100deg);
 }
 .logo {
   width: 150px;
@@ -96,17 +95,19 @@ body {
   display: inline;
   margin: 10px;
   transition: 2s;
-
 }
-.footer div ul li i {
-  color: white;
-    transition: 1s;
+.footer p {
+  color: yellow;
 }
-.footer div ul li i:hover {
+.fa-2x {
+  color: yellow;
+  transition: 1s;
+  margin-right: 20px;
+}
+.fa-2x:hover {
   transform: scale(1.3);
   transition: 2s;
 }
-#nav a.router-link-exact-active {
-  color: #fffb07;
-}
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 </style>

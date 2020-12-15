@@ -181,8 +181,36 @@ h1 span:nth-child(9){
     transform: scale(1.4);
     transition: 1s;
 }
+
 .container {
-    margin-bottom: 300px;
-    
+    position: relative;
+    margin-bottom: 260px;
+    background: linear-gradient(0deg, #000000, #262626);
+}
+.container:before, .container:after{
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background: linear-gradient(60deg, #fb0094, #0000ff, #00ff00, #fff000, #ff0000,#fb0094, #0000ff, #00ff00, #fff000, #ff0000);
+    background-size: 200%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: animate1 20s linear infinite;
+}
+.container:after{
+filter: blur(20px);
+}
+@keyframes animate1{
+    0%{
+        background-position: 0 0;
+    }
+    50%{
+        background-position: 700% 0;
+    }
+    100%{
+        background-position: 0 0;
+    }
 }
 </style>

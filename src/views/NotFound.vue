@@ -2,7 +2,7 @@
     <div>
         <div class="alert mx-auto " role="alert" >
             <div class="titulo text-center ">
-            <h2 class="pt-5">No hay Favoritos añadidos</h2>             
+            <h2 class="pt-5">Página no encontrada</h2>             
             </div>
         </div>
     </div>

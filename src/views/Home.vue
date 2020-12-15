@@ -133,7 +133,7 @@ body {
     transition: 1s;
 }
 .image:hover {
-    transform: scale(1.1);
+    transform: scale(1.3);
     transition: 1s;
     box-shadow: 0 0 20px 0 yellow, 0 0 40px 0 red;
 
@@ -227,4 +227,5 @@ filter: blur(20px);
         background-position: 0 0;
     }
 }
+
 </style>

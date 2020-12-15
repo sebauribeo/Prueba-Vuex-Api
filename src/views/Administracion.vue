@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>
+        <h1 >
             <span>A</span>
             <span>d</span>
             <span>m</span>
@@ -90,9 +90,16 @@ import { mapGetters,mapActions } from "vuex";
                 id: {
                     type: String,
                     required: true
-        }
+                }
             }
         },
+            mounted(){
+        let comentarios = this.$store.getters.enviarOpinion.find(result => result.id == this.id);
+            this.nombre = comentarios.nombre;
+            this.comentario = comentarios.comentario;
+            this.name = comentarios.name;
+            this.id = comentarios.id
+    },
         computed: {
            ...mapGetters(['enviarOpAdm'])
         },
