@@ -1,5 +1,8 @@
 <template>
     <div>
+
+        <!-- HEADER -->
+
         <h1>
             <span>P</span>
             <span>e</span>
@@ -12,6 +15,9 @@
             <span>e</span>
             <span>s</span>
         </h1>
+
+        <!-- MAIN -->
+
         <div class="row m-5" >
             <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 mt-4"  v-for="(personaje, index) in enviarPersonaje" :key="index">
                 <img :src="personaje.image" class="image card-img-top mx-auto d-block" alt="">
@@ -23,8 +29,8 @@
             </div>
         </div>
 
+<!-- MODAL PERSONAJE -->
 
-<!-- Modal -->
         <div class=""  v-for="(personaje, index) in enviarPersonaje" :key="index">
         <div class="modal fade  mt-5" :id="'exampleModal'+personaje.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -43,13 +49,16 @@
                 </ul>
               </div>
               <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-secondary rounded-pill " data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal" @click="agregandoFavoritos(personaje)" :disabled="personaje.favorito">Agregar a Favoritos</button>
               </div>
             </div>
           </div>
         </div>
         </div>
+
+<!-- MODAL OPINION -->
+
         <div v-for="(personaje, index) in enviarPersonaje" :key="index">
           <div class="modal fade mt-5" :id="'exampleModal2'+personaje.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -71,15 +80,14 @@
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="guardarOpinion(personaje)" >Enviar Opinion</button>
+                  <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal" @click="guardarOpinion(personaje)" >Enviar Opinion</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -97,7 +105,6 @@ import { mapGetters, mapActions } from "vuex";
         },
         methods: {
             guardarOpinion(personaje){
-                
                 if (this.nombre && this.comentario){
                     let opinion = {
                         nombre: this.nombre,
@@ -109,7 +116,6 @@ import { mapGetters, mapActions } from "vuex";
                 this.nombre = '';
                 this.comentario = '';
                 }
-            
             },
             ...mapActions(['agregandoFavoritos', 'agregarOpinion'])
         },
@@ -117,27 +123,17 @@ import { mapGetters, mapActions } from "vuex";
 </script>
 
 <style scoped>
+
+/* RESET */
+
 body {
     margin: 0;
     border: 0;
     padding: 0;
 }
-.row {
-    width: auto;
-}
-.image {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    box-shadow: 0 0 20px 0 yellow;
-    transition: 1s;
-}
-.image:hover {
-    transform: scale(1.3);
-    transition: 1s;
-    box-shadow: 0 0 20px 0 yellow, 0 0 40px 0 red;
 
-}
+/* ESTILOS HEADER */
+
 h1 {
     font-family: 'Lobster', cursive;
     margin-top: 20px;
@@ -193,11 +189,32 @@ h1 span:nth-child(9){
     }
 }
 
+/* ESTILOS MAIN */
+
+.row {
+    width: auto;
+}
+.image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px 0 yellow;
+    transition: 1s;
+}
+.image:hover {
+    transform: scale(1.3);
+    transition: 1s;
+    box-shadow: 0 0 20px 0 yellow, 0 0 40px 0 red;
+
+}
+
+/* ESTILOS MODAL */
 
 .modal-content {
     position: relative;
-    margin: 50px;
-    width: 400px;
+    margin-top: 50px;
+    padding: 0;
+    width: 320px;
     height: 400px;
     background: linear-gradient(0deg, #000000, #262626);
 }
@@ -227,5 +244,4 @@ filter: blur(20px);
         background-position: 0 0;
     }
 }
-
 </style>

@@ -1,5 +1,7 @@
 <template>
     <div>
+        
+        <!-- HEADER -->
         <h1>
             <span>O</span>
             <span>p</span>
@@ -11,7 +13,10 @@
             <span>e</span>
             <span>s</span>
         </h1>
-        <div class="container mt-5" v-if="enviarOpinion.length > 0">
+
+        <!-- MAIN -->
+
+    <div class="container mt-5" v-if="enviarOpinion.length > 0">
         <div class="accordion bg-light" :id="'accordionExample'+opinion.item" v-for="(opinion, index) in enviarOpinion" :key="index">
             <div class="accordion-item">
               <h2 class="accordion-header" id="heading">
@@ -29,7 +34,10 @@
               </div>
             </div>
         </div>
-        </div>
+    </div>
+
+        <!-- ALERTA -->
+
             <div v-else>
                 <div class="alert mx-auto m-5" role="alert" >
                     <div class="titulo text-center ">
@@ -37,7 +45,6 @@
                     </div>
                 </div>
             </div>
-
     </div>
 </template>
 
@@ -46,7 +53,6 @@ import { mapGetters,mapActions } from "vuex";
 
     export default {
         name: 'Opiniones',
-
         computed: {
             ...mapGetters(['enviarOpinion'])
         },
@@ -59,9 +65,18 @@ import { mapGetters,mapActions } from "vuex";
 </script>
 
 <style scoped>
+
+/* RESET */
+
 body {
+    margin: 0;
+    padding: 0;
+    border: 0;
     height: 100%;
 }
+
+/* ESTILOS HEADER */
+
 h1 {
     font-family: 'Lobster', cursive;
     margin-top: 20px;
@@ -116,6 +131,9 @@ h1 span:nth-child(9){
         text-shadow:  none;
     }
 }
+
+/*  ESTILOS ALERT */
+
 .image {
     width: 200px;
     height: 200px;
@@ -181,6 +199,8 @@ h1 span:nth-child(9){
     transform: scale(1.4);
     transition: 1s;
 }
+
+/* ESTILOS MAIN */
 
 .container {
     position: relative;

@@ -1,5 +1,8 @@
 <template>
     <div>
+
+        <!-- HEADER -->
+
         <h1>
             <span>F</span>
             <span>a</span>
@@ -11,6 +14,9 @@
             <span>o</span>
             <span>s</span>
         </h1>
+
+        <!-- MAIN -->
+
         <div class="container">
             <div class="row" v-if="enviarFavoritos.length > 0">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 my-3" v-for="(favorito, index) in enviarFavoritos" :key="index">
@@ -23,6 +29,9 @@
                     </div>
                 </div>
             </div>
+
+        <!-- ALERT -->
+
             <div v-else>
                 <div class="alert mx-auto m-5" role="alert" >
                     <div class="titulo text-center ">
@@ -31,8 +40,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </template>
 
@@ -52,6 +59,9 @@ import { mapActions, mapGetters } from "vuex";
 </script>
 
 <style scoped>
+
+/* RESET */
+
 body {
     margin: 0;
     padding: 0;
@@ -59,6 +69,9 @@ body {
     width: 100%;
     height: 100vh;
 }
+
+/* ESTILOS HEADER */
+
 h1 {
     font-family: 'Lobster', cursive;
     margin-top: 20px;
@@ -113,6 +126,9 @@ h1 span:nth-child(9){
         text-shadow:  none;
     }
 }
+
+/* ESTILOS ALERT */
+
 .image {
     width: 200px;
     height: 200px;
@@ -165,7 +181,6 @@ h1 span:nth-child(9){
 }
 .titulo {
     position: absolute;
-    padding: 50px;
     box-sizing: border-box;
     z-index: 1;
 }

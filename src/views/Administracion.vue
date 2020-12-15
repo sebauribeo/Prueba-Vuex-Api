@@ -1,5 +1,8 @@
 <template>
     <div>
+
+        <!-- HEADER -->
+
         <h1 >
             <span>A</span>
             <span>d</span>
@@ -16,6 +19,9 @@
             <span>ó</span>
             <span>n</span>
         </h1>
+
+        <!-- TABLA ADMINISTRACION -->
+
         <div v-if="enviarOpAdm.length > 0">
         <table class="table container bg-dark text-warning">
           <thead>
@@ -40,6 +46,9 @@
           </tbody>  
         </table>
         </div>
+
+        <!-- ALERT -->
+
         <div v-else>
           <div class="alert mx-auto m-5" role="alert" >
             <div class="titulo text-center ">
@@ -47,6 +56,9 @@
             </div>
          </div>
         </div>
+
+        <!-- MODAL EDITOR -->
+
         <div class="modal fade mt-5" :id="'exampleModal'+item.id" v-for="(item, index) in enviarOpAdm" :key="index" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content text-white">
@@ -79,7 +91,6 @@
 
 <script>
 import { mapGetters,mapActions } from "vuex";
-
     export default {
         name: 'Administracion',
         data() {
@@ -121,13 +132,23 @@ import { mapGetters,mapActions } from "vuex";
                 this.id = '';
              }
             },
-
             ...mapActions(['agregandoOpinion', 'eliminandoOpinion', 'agregarEditar'])
         }
     }
 </script>
 
 <style scoped>
+
+/* RESET */
+
+body {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+/* ESTILOS HEADER */
+
 h1 {
     font-family: 'Lobster', cursive;
     margin-top: 20px;
@@ -197,6 +218,9 @@ h1 span:nth-child(14){
         text-shadow:  none;
     }
 }
+
+/* ESTILOS HEADER */
+
 .alert {
     position: relative;
     width: 50%;
@@ -252,6 +276,9 @@ h1 span:nth-child(14){
 .table {
     margin-bottom: 300px;
 }
+
+/* ESTILOS MODAL */
+
 .modal-content {
     position: relative;
     margin: 50px;
@@ -285,5 +312,4 @@ filter: blur(20px);
         background-position: 0 0;
     }
 }
-
 </style>

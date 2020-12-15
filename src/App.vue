@@ -1,8 +1,11 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg bg-dark">
+
+    <!-- NAV BAR -->
+    
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
       <div class="container-fluid">
-        <router-link to="/"><img class="logo navbar-brand ms-5" src="./assets/1200px-Rick_and_Morty.svg.png" alt=""></router-link>
+        <router-link to="/"><img class="logo navbar-brand" src="./assets/1200px-Rick_and_Morty.svg.png" alt=""></router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,9 +24,14 @@
         </div>
       </div>
     </nav>
+
+    <!--  TRANSICION VISTAS  -->
+
     <transition name="la-transicion" mode="out-in">
       <router-view></router-view>
     </transition>
+
+    <!-- FOOTER -->
 
     <footer class="footer navbar navbar-expand-lg bg-dark text-white">
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
@@ -37,13 +45,12 @@
         </ul>
       </div>
     </footer>
-
-
-
   </div>
 </template>
 
 <script>
+
+// LLAMADO DE API 
 
 export default {
   name: 'App',
@@ -54,27 +61,40 @@ export default {
 </script>
 
 <style>
+
+/* RESET*/
+
 body {
   margin: 0;
   padding: 0;
   border: 0;
   background: url('../src/assets/fondo.gif');
 }
+
+/* ESTILOS TRANSICION */
+
 .la-transicion-enter-active {
   transition:  all 1s ease;
 }
 .la-transicion-enter, .slide-fade-leave-to {
   transform: rotateY(100deg);
 }
+
+/* ESTILOS NAVBAR */
+
 .logo {
   width: 150px;
-    transition: 1s;
+  transition: 1s;
+  align-content: center;
 
 }
 .logo:hover {
   transform: scale(1.1);
   transition: 1s;
 }
+
+/* ESTILOS FOOTER */
+
 .footer {
   max-width: auto;
   height: auto;
@@ -108,6 +128,8 @@ body {
   transform: scale(1.3);
   transition: 2s;
 }
+
+/* FUENTE */
 
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 </style>

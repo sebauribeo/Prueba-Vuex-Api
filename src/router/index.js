@@ -26,6 +26,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "administracion" */ '../views/Administracion.vue')
   },
   {
+    path: '/editor',
+    name: 'Editor',
+    component: () => import(/* webpackChunkName: "editor" */ '../views/Editor.vue')
+  },
+  {
     path: '*',
     component: () => import(/* webpackChunkName: "NotFound" */ '../views/NotFound.vue')
 }

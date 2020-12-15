@@ -1,5 +1,8 @@
 <template>
     <div>
+
+        <!-- MAIN -->
+
         <div class="alert mx-auto " role="alert" >
             <div class="titulo text-center ">
             <h2 class="pt-5">Página no encontrada</h2>             
@@ -15,6 +18,17 @@
 </script>
 
 <style scoped>
+
+/* RESET */
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* ESTILOS MAIN */
+
 .alert {
     margin: 100px;
     position: relative;
