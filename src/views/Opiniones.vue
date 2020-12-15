@@ -36,12 +36,12 @@
         </div>
     </div>
 
-        <!-- ALERTA -->
+        <!-- ALERT -->
 
             <div v-else>
                 <div class="alert mx-auto m-5" role="alert" >
                     <div class="titulo text-center ">
-                    <h2 class="pt-5 text-center">No hay Opiniones añadidas</h2>             
+                    <h2 class="pt-5 ">No hay Opiniones añadidas</h2>             
                     </div>
                 </div>
             </div>
@@ -186,11 +186,12 @@ h1 span:nth-child(9){
 }
 .titulo {
     position: absolute;
-    padding: 50px;
+    padding: auto;
     box-sizing: border-box;
     z-index: 1;
 }
 .titulo h2 {
+    margin-top: 50px;
     color: yellow;
     font-weight: 800;
     transition: 1s;

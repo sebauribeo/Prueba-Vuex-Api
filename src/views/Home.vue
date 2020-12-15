@@ -62,7 +62,7 @@
         <div v-for="(personaje, index) in enviarPersonaje" :key="index">
           <div class="modal fade mt-5" :id="'exampleModal2'+personaje.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-              <div class="modal-content text-white">
+              <div class="modal-content text-white p-0">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">{{personaje.name}}</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -210,11 +210,10 @@ h1 span:nth-child(9){
 
 /* ESTILOS MODAL */
 
+
 .modal-content {
-    position: relative;
     margin-top: 50px;
     padding: 0;
-    width: 320px;
     height: 400px;
     background: linear-gradient(0deg, #000000, #262626);
 }

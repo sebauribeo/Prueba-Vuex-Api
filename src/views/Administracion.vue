@@ -22,7 +22,7 @@
 
         <!-- TABLA ADMINISTRACION -->
 
-        <div v-if="enviarOpAdm.length > 0">
+        <div v-if="enviarOpinion.length > 0">
         <table class="table container bg-dark text-warning">
           <thead>
             <tr class="text-center">
@@ -35,8 +35,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="text-center" v-for="(item, index) in enviarOpAdm" :key="index">
-              <th>{{item.id}}</th>
+            <tr class="text-center" v-for="(item, index) in enviarOpinion" :key="index">
+              <th>{{index+1}}</th>
               <td>{{item.name}}</td>
               <td>{{item.comentario}}</td>
               <td>{{item.nombre}}</td>
@@ -50,7 +50,7 @@
         <!-- ALERT -->
 
         <div v-else>
-          <div class="alert mx-auto m-5" role="alert" >
+          <div class="alert mx-auto my-5" role="alert" >
             <div class="titulo text-center ">
               <h2 class="pt-5 text-center">No hay datos para Administrar</h2>             
             </div>
@@ -59,29 +59,28 @@
 
         <!-- MODAL EDITOR -->
 
-        <div class="modal fade mt-5" :id="'exampleModal'+item.id" v-for="(item, index) in enviarOpAdm" :key="index" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade mt-5" :id="'exampleModal'+item.id" v-for="(item, index) in enviarOpinion" :key="index" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content text-white">
               <div class="modal-header">
-                <label for="recipient-name" class="col-form-label">personaje:</label>
-                <input v-model="name" type="text" class="form-control mx-4" id="recipient-name">
+                <label for="recipient-name" class="col-form-label">personaje: {{item.name}}</label>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">nombre:</label>
-                    <input v-model="nombre" type="text" class="form-control" id="recipient-name">
+                    <input v-model="nombre" type="text" class="form-control" :id="'recipient-name'+item.nombre">
                   </div>
                   <div class="mb-3">
                     <label for="message-text" class="col-form-label">Opinion:</label>
-                    <textarea v-model="comentario" class="form-control" id="message-text"></textarea>
+                    <textarea v-model="comentario" class="form-control" :id="'message-text'+item.comentario"></textarea>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click.prevent="guardarNuevo(index)" >Guardar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="guardarOpinion(item)" >Guardar</button>
               </div>
             </div>
           </div>
@@ -97,42 +96,27 @@ import { mapGetters,mapActions } from "vuex";
             return {
                 nombre: '',
                 comentario: '',
-                name: '',
-                id: {
-                    type: String,
-                    required: true
-                }
             }
         },
-            mounted(){
-        let comentarios = this.$store.getters.enviarOpinion.find(result => result.id == this.id);
-            this.nombre = comentarios.nombre;
-            this.comentario = comentarios.comentario;
-            this.name = comentarios.name;
-            this.id = comentarios.id
-    },
+
         computed: {
-           ...mapGetters(['enviarOpAdm'])
+           ...mapGetters(['enviarOpinion'])
         },
         methods: {
-            editando(item){
-                this.push({name: 'editar', params: {id2: item.id}})
-            },
-            guardarNuevo(){
-             if(this.nombre && this.comentario && this.name){
-                let editar = {
-                    nombre: this.nombre,
-                    comentario: this.comentario,
-                    name: this.name,
-                };
-                this.$store.dispatch('guardarPersonaje',editar)
+            guardarOpinion(item){
+                if (this.nombre && this.comentario){
+                    let opinion = {
+                        nombre: this.nombre,
+                        comentario: this.comentario,
+                        id: item.id,
+                        name: item.name,
+                    }
+                this.$store.dispatch('guardarPersonaje',opinion),
                 this.nombre = '';
                 this.comentario = '';
-                this.name = '';
-                this.id = '';
-             }
+                }
             },
-            ...mapActions(['agregandoOpinion', 'eliminandoOpinion', 'agregarEditar'])
+            ...mapActions(['agregarOpinion', 'eliminandoOpinion', 'guardarPersonaje'])
         }
     }
 </script>
@@ -151,9 +135,9 @@ body {
 
 h1 {
     font-family: 'Lobster', cursive;
-    margin-top: 20px;
+    margin-top: 40px;
     color:  #eeff00;
-    font-size: 70px;
+    font-size: 50px;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -260,11 +244,12 @@ h1 span:nth-child(14){
 }
 .titulo {
     position: absolute;
-    padding: 50px;
+    padding: auto;
     box-sizing: border-box;
     z-index: 1;
 }
 .titulo h2 {
+    margin-top: 50px;
     color: yellow;
     font-weight: 800;
     transition: 1s;

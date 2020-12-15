@@ -5,7 +5,7 @@
     
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
       <div class="container-fluid">
-        <router-link to="/"><img class="logo navbar-brand" src="./assets/1200px-Rick_and_Morty.svg.png" alt=""></router-link>
+        <router-link to="/"><img class="logo navbar-brand ms-3" src="./assets/1200px-Rick_and_Morty.svg.png" alt=""></router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

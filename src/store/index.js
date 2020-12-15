@@ -44,25 +44,11 @@ export default new Vuex.Store({
     borrarOpinion(state,index){
       state.opinion.splice(index,1)
     },
-    mutandoOpiAdm(state, item){
-      let resultado = state.opinion.find(result => result.id == item.id);
-      resultado.opinion = true;
-      state.opinion.push(item);
-    },
-    mutandoGuardar(state,item){
-      let valor = [];
-      for (let index = 0; index < 1; index++){
-        valor.push(item)
-      }
-      let id = valor.push('');
-      item.id = id;
-      let name = valor.join('');
-      item.name = name;
-      let comentario = valor.join('');
-      item.comentario = comentario;
-      let nombre = valor.join('');
-      item.nombre = nombre;
-      state.opinion.push(item);
+
+    mutandoOpiAdm(state,item){
+      state.opinion.shift(item)
+      state.opinion.push(item)
+
     }
 
   },
@@ -88,11 +74,9 @@ export default new Vuex.Store({
     eliminandoOpinion({commit},index){
       commit('borrarOpinion', index);
     },
-    agregarEditar({commit},item){
+    guardarPersonaje({commit},item){
       commit('mutandoOpiAdm',item);
     },
-    guardarPersonaje({commit},item){
-      commit('mutandoGuardar',item)
-    }
+
   },
 })

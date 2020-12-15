@@ -3,9 +3,9 @@
 
         <!-- MAIN -->
 
-        <div class="alert mx-auto " role="alert" >
-            <div class="titulo text-center ">
-            <h2 class="pt-5">Página no encontrada</h2>             
+        <div class="alert mx-auto" role="alert" >
+            <div class="titulo">
+            <h2 class="pt-5 mx-auto">Página no encontrada</h2>             
             </div>
         </div>
     </div>
@@ -68,12 +68,15 @@ body {
     }
 }
 .titulo {
+    width: 100%;
     position: absolute;
-    padding: 50px;
     box-sizing: border-box;
     z-index: 1;
 }
 .titulo h2 {
+    display: flex;
+    align-content: center;
+    justify-content: center;
     color: yellow;
     font-weight: 800;
     transition: 1s;
@@ -82,4 +85,5 @@ body {
     transform: scale(1.4);
     transition: 1s;
 }
+
 </style>
