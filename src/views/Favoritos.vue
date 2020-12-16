@@ -24,7 +24,7 @@
                         <img :src="favorito.image" class="image card-img-top rounded-circle mx-auto d-block" :alt="favorito.id++">
                         <div class="card-body">
                            <h5 class="card-title m-4 text-center text-white" >{{favorito.name}}</h5>
-                        <a href="#" class="btn btn-danger col-12 rounded-pill m-1" @click="eliminandoFav(index)">Eliminar</a>
+                        <a href="#" class="btn btn-danger col-12 rounded-pill m-1" @click.prevent="eliminandoFav(index)">Eliminar</a>
                         </div>
                     </div>
                 </div>
@@ -195,5 +195,4 @@ h1 span:nth-child(9){
     transform: scale(1.4);
     transition: 1s;
 }
-
 </style>

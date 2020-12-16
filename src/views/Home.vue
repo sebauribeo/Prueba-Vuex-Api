@@ -39,17 +39,18 @@
                 <h5 class="modal-title" id="exampleModalLabel">{{personaje.name}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body m-1 row">
+              <div class="modal-body p-1 row">
                 <img class="col-6" :src="personaje.image" alt="">  
                 <ul class="p-0 col-6">
                     <li class="m-3">{{personaje.species}}</li>
                     <li class="m-3">{{personaje.gender}}</li>
                     <li class="m-3">{{personaje.status}}</li>
+                    <li class="m-3">{{personaje.created}}</li>
                     <li class="m-3">{{personaje.origin.name}}</li>
                 </ul>
               </div>
               <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger rounded-pill" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal" @click="agregandoFavoritos(personaje)" :disabled="personaje.favorito">Agregar a Favoritos</button>
               </div>
             </div>
@@ -80,8 +81,8 @@
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal" @click="guardarOpinion(personaje)" >Enviar Opinion</button>
+                  <button type="button" class="btn btn-danger rounded-pill" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal" @click="guardarOpinion(personaje)" >Enviar Opinion</button>
                 </div>
               </div>
             </div>

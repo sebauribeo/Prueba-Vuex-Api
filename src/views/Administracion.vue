@@ -23,7 +23,7 @@
         <!-- TABLA ADMINISTRACION -->
 
         <div v-if="enviarOpinion.length > 0">
-        <table class="table container bg-dark text-warning">
+        <table class="table container bg-dark text-warning mt-5">
           <thead>
             <tr class="text-center">
               <th>#</th>
@@ -63,24 +63,24 @@
           <div class="modal-dialog">
             <div class="modal-content text-white">
               <div class="modal-header">
-                <label for="recipient-name" class="col-form-label">personaje: {{item.name}}</label>
+                <label for="recipient-name" class="col-form-label">Editando a : {{item.name}}</label>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">nombre:</label>
+                    <label for="recipient-name" class="col-form-label">Edita tu Nombre:</label>
                     <input v-model="nombre" type="text" class="form-control" :id="'recipient-name'+item.nombre">
                   </div>
                   <div class="mb-3">
-                    <label for="message-text" class="col-form-label">Opinion:</label>
+                    <label for="message-text" class="col-form-label">Edita tu Opinion:</label>
                     <textarea v-model="comentario" class="form-control" :id="'message-text'+item.comentario"></textarea>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="guardarOpinion(item)" >Guardar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click.prevent="guardarOpinion(item)" >Guardar</button>
               </div>
             </div>
           </div>
@@ -258,8 +258,11 @@ h1 span:nth-child(14){
     transform: scale(1.4);
     transition: 1s;
 }
+
+/* ESTILOS TABLA */
+
 .table {
-    margin-bottom: 300px;
+    margin-bottom: 250px;
 }
 
 /* ESTILOS MODAL */
