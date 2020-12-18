@@ -15,36 +15,34 @@
         </h1>
 
         <!-- MAIN -->
-
-    <div class="container mt-5" v-if="enviarOpinion.length > 0">
-        <div class="accordion bg-light" :id="'accordionExample'+opinion.item" v-for="(opinion, index) in enviarOpinion" :key="index">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="heading">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="'#collapseOne'+opinion.id" aria-expanded="true" aria-controls="collapseOne">
-                  <p class="m-3"><strong>Opinion sobre: </strong>{{opinion.name}}</p>
-                  <br>
-                  <p class="m-3"><strong>Realizado por: </strong>{{opinion.nombre}}</p>
+        <div class="accordion container mt-5" id="accordionExample" v-if="enviarOpinion.length > 0">
+          <div class="accordion-item bg-light" v-for="(opinion, index) in enviarOpinion" :key="index">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="'#collapseOne'+opinion.id" aria-expanded="true" aria-controls="collapseOne">
+                <strong class="m-3">Opinion sobre: </strong>{{opinion.name}}
+                <br>
+                <strong class="m-3">Realizado por: </strong>{{opinion.nombre}}      
                 </button>
-              </h2>
-              <div :id="'collapseOne'+opinion.id" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#recipient-name">
-                <div class="accordion-body">
-                    <h2>Opinion de personaje:</h2>
-                  <p><strong>{{opinion.comentario}}</strong></p>
-                </div>
+            </h2>
+            <div :id="'collapseOne'+opinion.id" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <h2>Opinion de personaje:</h2>
+                <p><strong>{{opinion.comentario}}</strong></p>
               </div>
             </div>
+          </div>
         </div>
-    </div>
 
         <!-- ALERT -->
 
-            <div v-else>
-                <div class="alert mx-auto m-5" role="alert" >
-                    <div class="titulo text-center ">
-                    <h2 class="pt-5 ">No hay Opiniones añadidas</h2>             
-                    </div>
-                </div>
-            </div>
+        <div v-else>
+          <div class="alert mx-auto m-5" role="alert" >
+              <div class="titulo text-center ">
+              <h2 class="pt-5 ">No hay Opiniones añadidas</h2>             
+              </div>
+          </div>
+        </div>
+
     </div>
 </template>
 

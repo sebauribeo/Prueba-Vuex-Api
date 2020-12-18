@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from '../router/index'
 
 Vue.use(Vuex)
 
@@ -32,7 +33,7 @@ export default new Vuex.Store({
       state.personaje = datos;
     },
     mutandoFavoritos(state,valor){
-      let resultado = state.personaje.find(result => result.id == valor.id);
+      let resultado = state.personaje.find(result => result.name == valor.name);
       state.favorito.push(resultado)
     },
     borrarFav(state,index){
@@ -62,8 +63,9 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    agregandoFavoritos({commit},valor){
-      commit('mutandoFavoritos',valor);
+    agregandoFavoritos({commit},favorito){
+      commit('mutandoFavoritos',favorito);
+      router.push({name: 'Favoritos'})
     },
     eliminandoFav({commit},index){
       commit('borrarFav',index);

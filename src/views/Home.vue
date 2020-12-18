@@ -19,75 +19,73 @@
         <!-- MAIN -->
 
         <div class="row m-5" >
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 mt-4"  v-for="(personaje, index) in enviarPersonaje" :key="index">
-                <img :src="personaje.image" class="image card-img-top mx-auto d-block" alt="">
-                <div class="">
-                    <h5 class="card-title text-center text-white m-4">{{personaje.name}}</h5>
-                    <button type="button" class="btn btn-danger col-6 rounded-pill" data-bs-toggle="modal" :data-bs-target="'#exampleModal2'+personaje.id" data-bs-whatever="@mdo">Opinar</button>
-                    <button type="button" class="btn btn-success col-6 rounded-pill" data-bs-toggle="modal" :data-bs-target="'#exampleModal'+personaje.id">Ver más</button>
-                </div>
+          <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 mt-4"  v-for="(personaje, index) in enviarPersonaje" :key="index">
+            <img :src="personaje.image" class="image card-img-top mx-auto d-block" alt="">
+            <div class="">
+              <h5 class="card-title text-center text-white m-4">{{personaje.name}}</h5>
+              <button type="button" class="btn btn-danger col-6 rounded-pill" data-bs-toggle="modal" :data-bs-target="'#exampleModal2'+personaje.id" data-bs-whatever="@mdo">Opinar</button>
+              <button type="button" class="btn btn-success col-6 rounded-pill" data-bs-toggle="modal" :data-bs-target="'#exampleModal'+personaje.id">Ver más</button>
             </div>
-        </div>
 
 <!-- MODAL PERSONAJE -->
 
-        <div class=""  v-for="(personaje, index) in enviarPersonaje" :key="index">
-        <div class="modal fade  mt-5" :id="'exampleModal'+personaje.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content text-white">
-              <div class="modal-header ">
-                <h5 class="modal-title" id="exampleModalLabel">{{personaje.name}}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body p-1 row">
-                <img class="col-6" :src="personaje.image" alt="">  
-                <ul class="p-0 col-6">
-                    <li class="m-3">{{personaje.species}}</li>
-                    <li class="m-3">{{personaje.gender}}</li>
-                    <li class="m-3">{{personaje.status}}</li>
-                    <li class="m-3">{{personaje.created}}</li>
-                    <li class="m-3">{{personaje.origin.name}}</li>
-                </ul>
-              </div>
-              <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-danger rounded-pill" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal" @click="agregandoFavoritos(personaje)" :disabled="personaje.favorito">Agregar a Favoritos</button>
+            <div class="modal fade  mt-5" :id="'exampleModal'+personaje.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content text-white">
+                  <div class="modal-header ">
+                    <h5 class="modal-title" id="exampleModalLabel">{{personaje.name}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body p-1 row">
+                    <img class="col-6" :src="personaje.image" :alt="personaje.name">  
+                    <ul class="p-0 col-6">
+                        <li class="m-3">{{personaje.species}}</li>
+                        <li class="m-3">{{personaje.gender}}</li>
+                        <li class="m-3">{{personaje.status}}</li>
+                        <li class="m-3">{{personaje.created}}</li>
+                        <li class="m-3">{{personaje.origin.name}}</li>
+                    </ul>
+                  </div>
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-danger rounded-pill" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal" @click="agregandoFavoritos(personaje)">Agregar a Favoritos</button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        </div>
 
 <!-- MODAL OPINION -->
 
-        <div v-for="(personaje, index) in enviarPersonaje" :key="index">
-          <div class="modal fade mt-5" :id="'exampleModal2'+personaje.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content text-white p-0">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">{{personaje.name}}</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                   <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Tu nombre:</label>
-                      <input v-model="nombre" type="text" class="form-control" id="recipient-name">
-                    </div>
-                    <div class="m-1">
-                      <label for="message-text" class="col-form-label">Opinion:</label>
-                      <textarea v-model="comentario" class="form-control" id="message-text"></textarea>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger rounded-pill" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal" @click="guardarOpinion(personaje)" >Enviar Opinion</button>
+        
+            <div class="modal fade mt-5" :id="'exampleModal2'+personaje.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content text-white p-0">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{personaje.name}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                     <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Tu nombre:</label>
+                        <input v-model="nombre" type="text" class="form-control" id="recipient-name">
+                      </div>
+                      <div class="m-1">
+                        <label for="message-text" class="col-form-label">Opinion:</label>
+                        <textarea v-model="comentario" class="form-control" id="message-text"></textarea>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger rounded-pill" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal" @click="guardarOpinion(personaje)" >Enviar Opinion</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
     </div>
 </template>
 
