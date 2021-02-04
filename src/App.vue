@@ -34,11 +34,11 @@
     <!-- FOOTER -->
 
     <footer class="footer navbar navbar-expand-lg bg-dark text-white">
-      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-        <p> Pagina web creada por:<strong> Sebastian Uribe</strong></p>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <p class="my-auto"> Pagina web creada por:<strong> Sebastian Uribe</strong></p>
       </div>
-      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-        <ul>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <ul class="my-auto">
           <li><a href="https://twitter.com/?lang=es" target="_blank"><font-awesome-icon class="fa-2x" :icon="['fab', 'twitter-square']"></font-awesome-icon></a></li>
           <li><a href="https://web.facebook.com" target="_blank"><font-awesome-icon class="fa-2x" :icon="['fab', 'facebook-square']"></font-awesome-icon></a></li>
           <li><a href="https://github.com" target="_blank"><font-awesome-icon class="fa-2x" :icon="['fab', 'github-square']"></font-awesome-icon></a></li>
@@ -73,7 +73,7 @@ body {
 
 /* ESTILOS TRANSICION */
 
-.la-transicion-enter-active {
+.transicion-enter-active {
   transition:  all 1s ease;
 }
 .la-transicion-enter, .slide-fade-leave-to {
@@ -96,15 +96,16 @@ body {
 /* ESTILOS FOOTER */
 
 .footer {
-  max-width: auto;
-  height: auto;
+  height: 80px; 
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
 .footer div {
   display: flex;
   align-content: center;
   justify-content: center;
-  align-items: end;
   margin: 0;
   padding: 0;
 }

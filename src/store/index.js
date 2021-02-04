@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import router from '../router/index'
 
 Vue.use(Vuex)
 
@@ -65,7 +64,6 @@ export default new Vuex.Store({
     },
     agregandoFavoritos({commit},favorito){
       commit('mutandoFavoritos',favorito);
-      router.push({name: 'Favoritos'})
     },
     eliminandoFav({commit},index){
       commit('borrarFav',index);

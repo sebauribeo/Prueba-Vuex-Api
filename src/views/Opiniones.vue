@@ -183,13 +183,10 @@ h1 span:nth-child(9){
     }
 }
 .titulo {
-    position: absolute;
-    padding: auto;
-    box-sizing: border-box;
+    position: relative;
     z-index: 1;
 }
 .titulo h2 {
-    margin-top: 50px;
     color: yellow;
     font-weight: 800;
     transition: 1s;
